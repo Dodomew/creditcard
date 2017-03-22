@@ -43,11 +43,13 @@
 
           </div>
 
+					<section class="errormessage" id="errormessage"></section>
+
           <div class='panel'>
 
             <div class='panel-body'>
 
-              <form onsubmit="return readForm()"> <!-- Hier begint de form -->
+              <form> <!-- Hier begint de form  onsubmit="return readForm() -->
 
                 <div class='form-group'>
 
@@ -55,7 +57,7 @@
 
                   <div class='input-group'>
 
-                    <input type="number" class='form-control' id='card' value="12345">
+                    <input type="number" class='form-control' id='card' value="12345" onkeyup="return readForm()">
 
                     <div class='input-group-addon' id='type'></div>
 

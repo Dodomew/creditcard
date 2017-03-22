@@ -107,31 +107,37 @@ function readForm()
     // charAt looks at the position in a string. So (0) looks at the first position.
     if (cardNumbers.charAt(0) === "4" && cardNumbers.length >= 13 && cardNumbers.length <= 16)
     {
-      //this is a visa card;
+      // this is a visa card;
+      // 412345678902348
+      document.getElementById("errormessage").innerHTML = "this is a visa card";
       console.log("this is a visa card");
-      checkValidity();
+      return true;
     }
     else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
     {
       //this is a Mastercard;
+      document.getElementById("errormessage").innerHTML = "this is a Mastercard card";
       console.log("this is a Mastercard card");
-      checkValidity();
+      return true;
     }
     else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
     {
       //this is an american express card;
+      document.getElementById("errormessage").innerHTML = "this is a american express card";
       console.log("this is a american express card");
-      checkValidity();
+      return true;
     }
     else
     {
-      document.write("error");
+      document.getElementById("errormessage").innerHTML = "Something went wrong! Can you please fill in your creditcard number?"
       return false;
     }
 
   }
   else
   {
-      console.log("Creditcard is NOT valid!");
+    document.getElementById("errormessage").innerHTML = "This creditcard number is not valid!"
+    return false;
+    console.log("Creditcard is NOT valid!");
   }
 }
