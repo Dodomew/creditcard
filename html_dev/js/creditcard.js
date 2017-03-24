@@ -58,6 +58,42 @@ function readForm()
   var totalMultipliedNumber = 0;
   var totalSumOfBaseRemaining = 0;
 
+  if(cardNumbers.length > 0)
+  {
+    if (cardNumbers.charAt(0) === "4")
+    {
+      // this is a visa card;
+      // 412345678902348
+      document.getElementById("errormessage").innerHTML = "This looks like a Visa card.";
+      console.log("this is a visa card");
+    }
+    else if (cardNumbers.charAt(0) === "5")
+    {
+      //this is a Mastercard;
+      document.getElementById("errormessage").innerHTML = "This looks like a Mastercard.";
+      console.log("this is a Mastercard card");
+    }
+    else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7")
+    {
+      //this is an american express card;
+      document.getElementById("errormessage").innerHTML = "This looks like an American Express card.";
+      console.log("this is a american express card");
+    }
+    else if (cardNumbers.charAt(0) != "4" || cardNumbers.charAt(0) != "5" || cardNumbers.charAt(0) != "3")
+    {
+      document.getElementById("errormessage").innerHTML = "?";
+    }
+    else
+    {
+      document.getElementById("errormessage").innerHTML = "";
+    }
+  }
+  else
+  {
+    document.getElementById("errormessage").innerHTML = "";
+  }
+
+
   // take the array length, then do - 1, because array length != length (array = 0 based, everything else starts at 1)
   for (var i = creditNumContainer.length - 1; i >= 0; i -= 2)
   {
@@ -99,45 +135,48 @@ function readForm()
   //  else it is not valid.
   var validityCreditCard = sumOfNumbers % 10;
 
-  if(validityCreditCard == 0)
+  if(cardNumbers.length > 12)
   {
-    console.log("Creditcard is valid");
+    if(validityCreditCard == 0)
+    {
+      console.log("Creditcard is valid");
 
-    // Check the characters at the first position of the value string of "card". If it's a certain number AND it matches other criteria, it is a certain card.
-    // charAt looks at the position in a string. So (0) looks at the first position.
-    if (cardNumbers.charAt(0) === "4" && cardNumbers.length >= 13 && cardNumbers.length <= 16)
-    {
-      // this is a visa card;
-      // 412345678902348
-      document.getElementById("errormessage").innerHTML = "this is a visa card";
-      console.log("this is a visa card");
-      return true;
-    }
-    else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
-    {
-      //this is a Mastercard;
-      document.getElementById("errormessage").innerHTML = "this is a Mastercard card";
-      console.log("this is a Mastercard card");
-      return true;
-    }
-    else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
-    {
-      //this is an american express card;
-      document.getElementById("errormessage").innerHTML = "this is a american express card";
-      console.log("this is a american express card");
-      return true;
+      // Check the characters at the first position of the value string of "card". If it's a certain number AND it matches other criteria, it is a certain card.
+      // charAt looks at the position in a string. So (0) looks at the first position.
+      if (cardNumbers.charAt(0) === "4" && cardNumbers.length >= 13 && cardNumbers.length <= 16)
+      {
+        // this is a visa card;
+        // 412345678902348
+        document.getElementById("errormessage").innerHTML = "this is a valid visa card";
+        console.log("this is a visa card");
+        return true;
+      }
+      else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
+      {
+        //this is a Mastercard;
+        document.getElementById("errormessage").innerHTML = "This is a valid Mastercard card";
+        console.log("this is a Mastercard card");
+        return true;
+      }
+      else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
+      {
+        //this is an american express card;
+        document.getElementById("errormessage").innerHTML = "This is a valid american express card";
+        console.log("this is a american express card");
+        return true;
+      }
+      else
+      {
+        console.log("Creditcard is NOT valid!");
+        document.getElementById("errormessage").innerHTML = "This creditcard number is not valid!"
+        return false;
+      }
     }
     else
     {
-      document.getElementById("errormessage").innerHTML = "Something went wrong! Can you please fill in your creditcard number?"
+      console.log("Creditcard is NOT valid!");
+      document.getElementById("errormessage").innerHTML = "This creditcard number is not valid!"
       return false;
     }
-
-  }
-  else
-  {
-    document.getElementById("errormessage").innerHTML = "This creditcard number is not valid!"
-    return false;
-    console.log("Creditcard is NOT valid!");
   }
 }
