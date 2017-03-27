@@ -147,21 +147,22 @@ function readForm()
       {
         // this is a visa card;
         // 412345678902348
-        document.getElementById("errormessage").innerHTML = "this is a valid visa card";
+        document.getElementById("errormessage").innerHTML = "Visa card ";
+        document.getElementById("card-checkmark").innerHTML = "&#10004;";
         console.log("this is a visa card");
         return true;
       }
       else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
       {
         //this is a Mastercard;
-        document.getElementById("errormessage").innerHTML = "This is a valid Mastercard card";
+        document.getElementById("errormessage").innerHTML = "Mastercard " + "&#10004;";
         console.log("this is a Mastercard card");
         return true;
       }
       else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
       {
         //this is an american express card;
-        document.getElementById("errormessage").innerHTML = "This is a valid american express card";
+        document.getElementById("errormessage").innerHTML = "American Express " + "&#10004;";
         console.log("this is a american express card");
         return true;
       }
@@ -175,7 +176,7 @@ function readForm()
     else
     {
       console.log("Creditcard is NOT valid!");
-      document.getElementById("errormessage").innerHTML = "This creditcard number is not valid!"
+      document.getElementById("errormessage").innerHTML = "Creditcard not recognized!"
       return false;
     }
   }

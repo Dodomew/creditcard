@@ -1,1 +1,68 @@
+html, body
+{
+  font-size: 67.5%;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
 
+h1
+{
+  font-size: 4rem;
+}
+
+.container
+{
+  margin: auto;
+  width: 60%;
+  height: auto;
+}
+
+.page-header
+{
+  width: 100%;
+  text-align: center;
+  margin: 1rem;
+}
+
+form
+{
+  display: table;
+  font-size: 1.6rem;
+  width: 60%;
+  margin: auto;
+}
+
+form label
+{
+  display: table-cell;
+}
+
+.form-group
+{
+  background-color: lightblue;
+  margin: 1rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.form-control
+{
+  display: table-cell;
+  height: 2rem;
+}
+
+.errormessage
+{
+  display: inline-block;
+  font-size: 1.6rem;
+  height: auto;
+  margin-left: 1rem;
+}
+
+.checkmark
+{
+  color:green;
+  display: inline;
+}

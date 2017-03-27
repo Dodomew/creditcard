@@ -37,13 +37,11 @@
 
         <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
 
-          <div class='page-header'>
+          <header class='page-header'>
 
             <h1>Order now</h1>
 
-          </div>
-
-					<section class="errormessage" id="errormessage"></section>
+          </header>
 
           <div class='panel'>
 
@@ -55,13 +53,11 @@
 
                   <label>Credit card number:</label>
 
-                  <div class='input-group'>
+                  <input type="number" class='form-control' id='card' value="12345" onkeyup="return readForm()">
 
-                    <input type="number" class='form-control' id='card' value="12345" onkeyup="return readForm()">
-
-                    <div class='input-group-addon' id='type'></div>
-
-                  </div>
+									<section class="errormessage" id="errormessage">
+									</section>
+									<p class="checkmark" id="card-checkmark"></p>
 
                 </div>
 
