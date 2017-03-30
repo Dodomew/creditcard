@@ -64,19 +64,19 @@ function readForm()
     {
       // this is a visa card;
       // 412345678902348
-      document.getElementById("errormessage").innerHTML = "This looks like a Visa card.";
+      document.getElementById("errormessage").innerHTML = "Visa";
       console.log("this is a visa card");
     }
     else if (cardNumbers.charAt(0) === "5")
     {
       //this is a Mastercard;
-      document.getElementById("errormessage").innerHTML = "This looks like a Mastercard.";
+      document.getElementById("errormessage").innerHTML = "Mastercard";
       console.log("this is a Mastercard card");
     }
     else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7")
     {
       //this is an american express card;
-      document.getElementById("errormessage").innerHTML = "This looks like an American Express card.";
+      document.getElementById("errormessage").innerHTML = "American Express";
       console.log("this is a american express card");
     }
     else if (cardNumbers.charAt(0) != "4" || cardNumbers.charAt(0) != "5" || cardNumbers.charAt(0) != "3")
@@ -147,7 +147,7 @@ function readForm()
       {
         // this is a visa card;
         // 412345678902348
-        document.getElementById("errormessage").innerHTML = "Visa card ";
+        document.getElementById("errormessage").innerHTML = "Visa ";
         document.getElementById("card-checkmark").innerHTML = "&#10004;";
         console.log("this is a visa card");
         return true;
