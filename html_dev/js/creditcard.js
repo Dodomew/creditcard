@@ -148,22 +148,21 @@ function readForm()
       {
         // this is a visa card;
         // 412345678902348
-        document.getElementById("errormessage").innerHTML = "Visa ";
-        greenCheckmark.innerHTML = "&#10004;";
+        document.getElementById("errormessage").innerHTML = "Visa " + "<span class='checkmark'>" + "&#10004;" + "</span>";
         console.log("this is a visa card");
         return true;
       }
       else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
       {
         //this is a Mastercard;
-        document.getElementById("errormessage").innerHTML = "Mastercard " + "&#10004;";
+        document.getElementById("errormessage").innerHTML = "Mastercard " + "<span class='checkmark'>" + "&#10004;" + "</span>";
         console.log("this is a Mastercard card");
         return true;
       }
       else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
       {
         //this is an american express card;
-        document.getElementById("errormessage").innerHTML = "American Express " + "&#10004;";
+        document.getElementById("errormessage").innerHTML = "American Express " + "<span class='checkmark'>" + "&#10004;" + "</span>";
         console.log("this is a american express card");
         return true;
       }

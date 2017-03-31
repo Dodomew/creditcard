@@ -134,10 +134,9 @@ form input, select {
 }
 
 form .errormessage {
-  height: 25%;
-  margin: auto;
-  color: white;
+  flex: 1 100%;
   font-size: 5rem;
+  min-height: 25%;
 }
 
 .submitContainer {
