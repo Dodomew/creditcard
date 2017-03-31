@@ -43,6 +43,7 @@ function readForm()
 {
   // Get the form input value;
   var cardNumbers = (document.getElementById("card").value);
+  var greenCheckmark = document.getElementById("card-checkmark");
 
 /*
   var x = 13;
@@ -148,7 +149,7 @@ function readForm()
         // this is a visa card;
         // 412345678902348
         document.getElementById("errormessage").innerHTML = "Visa ";
-        document.getElementById("card-checkmark").innerHTML = "&#10004;";
+        greenCheckmark.innerHTML = "&#10004;";
         console.log("this is a visa card");
         return true;
       }
