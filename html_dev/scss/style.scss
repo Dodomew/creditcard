@@ -1,47 +1,5 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
+@import "partials/base";
+@import "partials/reset";
 
 html, body
 {
@@ -80,18 +38,46 @@ form
 	padding: 2rem;
 	margin: auto;
 	border-radius: 1rem;
-	background-color: rgb(20,20,20);
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 1rem;
+	background-color: $color-ccard-default;
 }
 
 form input, select
 {
 	font-size: 2rem;
 	text-indent: 1rem;
+	color: $color-typography-white;
+	background-color: $color-ccard-default;
+	border: 2px solid $color-typography-whitesmoke;
+	transition: background 0.15s linear;
+}
+
+form input:hover
+{
+	background-color: $color-ccard-default-hover;
+}
+
+select:hover
+{
+	background-color: $color-ccard-default-hover;
+}
+
+form input:focus
+{
+	outline: none;
+	border-color: white;
+	box-shadow: 0 0 10px whitesmoke;
+}
+
+select:focus
+{
+	outline: none;
+	border-color: white;
+	box-shadow: 0 0 10px whitesmoke;
 }
 
 .creditcardNumber
@@ -104,7 +90,6 @@ form input, select
 {
 	width: 100%;
 	height: 5rem;
-	border: none;
 }
 
 .nameHolder
@@ -116,7 +101,6 @@ form input, select
 {
 	width: 100%;
 	height: 5rem;
-	border: none;
 }
 
 .expDateContainer
@@ -124,11 +108,11 @@ form input, select
 	flex: 1 0 40%;
 }
 
-.expDate
+.expDateContainer select
 {
+	height: 5.6rem;
 	width: 45%;
-	height: 5rem;
-	border: none;
+	-webkit-appearance: textarea;
 }
 
 .cvvNumber
@@ -140,7 +124,6 @@ form input, select
 {
 	width: 25%;
 	height: 5rem;
-	border: none;
 }
 
 form .errormessage
@@ -167,4 +150,43 @@ form .errormessage
 	display: inline-block;
 	color: green;
 	font-size: 5rem;
+}
+
+.defaultCardBGColor
+{
+	background-color: $color-ccard-default;
+	transition: background 0.3s linear;
+}
+
+.visaCardColor
+{
+	background-color: $color-ccard-visa;
+	transition: background 0.3s linear;
+}
+
+.masterCardColor //logo is one red circle intersecting with an orange circle
+{
+	background-color: $color-ccard-mastercard;
+	transition: background 0.3s linear;
+}
+
+.americanExpressColor
+{
+	background-color: $color-ccard-amex;
+	transition: background 0.3s linear;
+}
+
+.inputBorder
+{
+	border: 2px solid $color-typography-white;
+}
+
+// Hides the up and down arrows next to input fields
+// http://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-input-s-spin-box
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }

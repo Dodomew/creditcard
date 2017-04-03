@@ -1,0 +1,94 @@
+//the base for doortjespanjerberg.com - mixins, variables, color, typography
+
+// Font import
+//@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700);
+
+// Font variables
+$font-normal: 'Roboto', sans-serif;
+
+// Colors used as background throughout website
+$color-ccard-visa: blue;
+$color-ccard-visa-light: lightblue;
+$color-ccard-mastercard: black;
+$color-ccard-mastercard-light: grey;
+$color-ccard-amex: lightblue;
+$color-ccard-amex-light: skyblue;
+$color-ccard-default: #616161;
+$color-ccard-default-hover: rgba(250,250,250,0.2);
+
+// Colors used for typography or borders
+$color-typography-white: #FAFAFA;
+$color-typography-whitesmoke: #DCDCDC;
+$color-border-input: white;
+
+// Icons and images
+
+// Media queries for responsive layout
+$min-mobile-size: 240px;
+$max-mobile-size: 767px;
+$min-tablet-size: 768px;
+$max-tablet-size: 1024px;
+$min-landscape-tablet-size: 1025px;
+$max-landscape-tablet-size: 1366px;
+$min-tablet-nexus-size: 600px;
+$max-tablet-nexus-size: 960px;
+
+//mixins
+
+/* ----- Mobile phones and tablets ----- */
+/* https://davidwalsh.name/write-media-queries-sass */
+
+/* Responsive Layout design of Frontpage */
+
+/* Mobile phones */
+@mixin responsiveLayoutMobile
+{
+  @media (min-width: #{$min-mobile-size})
+    and (max-width: #{$max-mobile-size})
+    and (min-height: #{$min-mobile-size})
+    and (max-height: #{$max-mobile-size})
+    and (-webkit-min-device-pixel-ratio: 1)
+    {
+      @content;
+    }
+}
+
+/* Normal tablets */
+@mixin responsiveLayoutTablet
+{
+  @media (min-width: #{$min-tablet-size})
+    and (max-width: #{$max-tablet-size})
+    and (min-height: #{$min-tablet-size})
+    and (max-height: #{$max-tablet-size})
+    and (-webkit-min-device-pixel-ratio: 1)
+  {
+    @content;
+  }
+}
+
+/* Big tablets and tablets in landscape mode */
+@mixin responsiveLayoutBigTablet()
+{
+  @media (min-width: #{$min-tablet-size})
+    and (max-width: #{$max-landscape-tablet-size})
+    and (min-height: #{$min-tablet-size})
+    and (max-height: #{$max-landscape-tablet-size})
+    and (-webkit-min-device-pixel-ratio: 2)
+    {
+      @content;
+    }
+}
+
+/* Nexus 7 */
+@mixin responsiveLayoutNexusSeven()
+{
+  @media (min-width: #{$min-tablet-nexus-size})
+    and (max-width: #{$max-tablet-nexus-size})
+    and (min-height: #{$min-tablet-nexus-size})
+    and (max-height: #{$max-tablet-nexus-size})
+    and (-webkit-min-device-pixel-ratio: 1)
+  {
+    @content;
+  }
+}

@@ -30,20 +30,20 @@
 
         </header>
 
-          <form> <!-- Hier begint de form  onsubmit="return readForm() -->
+          <form id="creditcardInputForm" class=""> <!-- Hier begint de form  onsubmit="return readForm() -->
 
 						<div class="errormessage" id="errormessage"></div>
 						<div class="checkmark" id="card-checkmark"></div>
 
             <div class='creditcardNumber'>
 
-              <input type="number" id='card' placeholder="XXXX-XXXX-XXXX-XXXX" pattern="[0-9]{13,16}" onkeyup="return readForm()" required autofocus />
+              <input type="number" id='card' class="" placeholder="XXXX-XXXX-XXXX-XXXX" pattern="[0-9]{13,16}" min="0" title="Your creditcard number." onkeyup="return readForm()" required/>
 
             </div>
 
 						<div class="expDateContainer">
 
-							<select class='expDate'>
+							<select class="" id="expDateMonth">
 
 								<option value="01">January</option>
 								<option value="02">February </option>
@@ -60,7 +60,7 @@
 
 						</select>
 
-						<select class='expDate'>
+						<select class="" id="expDateYear">
 
 								<option value="16"> 2016</option>
 								<option value="17"> 2017</option>
@@ -75,13 +75,13 @@
 
             <div class="nameHolder">
 
-              <input type="text" id='nameHolder' value="My name is...">
+              <input type="text" id='nameHolder' class=""  placeholder="The card holder's name." pattern="[a-zA-Z]*" title="The card holder's name." required>
 
             </div>
 
             <div class="cvvNumber">
 
-              <input type='text' id='cvvNumber' value="cvv">
+              <input type='number' id='cvvNumber' class=""  placeholder="cvv" pattern="[0-9]{0,5}" title="The security code on the back of the creditcard." min="0" required>
 
             </div>
 

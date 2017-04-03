@@ -45,19 +45,16 @@ function readForm()
   var cardNumbers = (document.getElementById("card").value);
   var greenCheckmark = document.getElementById("card-checkmark");
 
-/*
-  var x = 13;
-  var tiental = x / 10;
-  var eental = x % 10;
-  var samen = tiental + eental;
-*/
-
   //creates an Array from the string. It outputs like "1", "2" etc
   var creditNumContainer = Array.from(cardNumbers);
   // create var to hold sum of these numbers
   var totalNumberAtPosition = 0;
   var totalMultipliedNumber = 0;
   var totalSumOfBaseRemaining = 0;
+  // For styling the creditcard visually
+  var formBGColor = document.getElementById("creditcardInputForm");
+  var formInputs = document.getElementsByTagName("input");
+  var formSelects = document.getElementsByTagName("select");
 
   if(cardNumbers.length > 0)
   {
@@ -66,18 +63,57 @@ function readForm()
       // this is a visa card;
       // 412345678902348
       document.getElementById("errormessage").innerHTML = "Visa";
+      formBGColor.className = " visaCardColor";
+
+      // Go through each <input> and add CSS class to it
+      for (var i = 0; i < formInputs.length; i++)
+      {
+        formInputs[i].className = "visaCardColor" + " inputBorder";
+      }
+
+      // Go through each <select> and add CSS class to it
+      for (var i = 0; i < formSelects.length; i++)
+      {
+        formSelects[i].className = "visaCardColor" + " inputBorder";
+      }
       console.log("this is a visa card");
     }
     else if (cardNumbers.charAt(0) === "5")
     {
       //this is a Mastercard;
       document.getElementById("errormessage").innerHTML = "Mastercard";
+      formBGColor.className = " masterCardColor";
+
+      // Go through each <input> and add CSS class to it
+      for (var i = 0; i < formInputs.length; i++)
+      {
+        formInputs[i].className = " masterCardColor" + " inputBorder";
+      }
+
+      // Go through each <select> and add CSS class to it
+      for (var i = 0; i < formSelects.length; i++)
+      {
+        formSelects[i].className = " masterCardColor" + " inputBorder";
+      }
       console.log("this is a Mastercard card");
     }
     else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7")
     {
       //this is an american express card;
       document.getElementById("errormessage").innerHTML = "American Express";
+      formBGColor.className = " americanExpressColor";
+
+      // Go through each <input> and add CSS class to it
+      for (var i = 0; i < formInputs.length; i++)
+      {
+        formInputs[i].className = " americanExpressColor" + " inputBorder";
+      }
+
+      // Go through each <select> and add CSS class to it
+      for (var i = 0; i < formSelects.length; i++)
+      {
+        formSelects[i].className = " americanExpressColor" + " inputBorder";
+      }
       console.log("this is a american express card");
     }
     else if (cardNumbers.charAt(0) != "4" || cardNumbers.charAt(0) != "5" || cardNumbers.charAt(0) != "3")
@@ -87,11 +123,25 @@ function readForm()
     else
     {
       document.getElementById("errormessage").innerHTML = "";
+
     }
   }
   else
   {
     document.getElementById("errormessage").innerHTML = "";
+    formBGColor.className = " defaultCardBGColor";
+
+    // Go through each <input> and add CSS class to it
+    for (var i = 0; i < formInputs.length; i++)
+    {
+      formInputs[i].className = " defaultCardBGColor" + " inputBorder";
+    }
+
+    // Go through each <select> and add CSS class to it
+    for (var i = 0; i < formSelects.length; i++)
+    {
+      formSelects[i].className = " defaultCardBGColor" + " inputBorder";
+    }
   }
 
 

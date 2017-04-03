@@ -1,3 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700);
+/* ----- Mobile phones and tablets ----- */
+/* https://davidwalsh.name/write-media-queries-sass */
+/* Responsive Layout design of Frontpage */
+/* Mobile phones */
+/* Normal tablets */
+/* Big tablets and tablets in landscape mode */
+/* Nexus 7 */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -79,17 +87,41 @@ form {
   padding: 2rem;
   margin: auto;
   border-radius: 1rem;
-  background-color: #141414;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+  background-color: #616161;
 }
 
 form input, select {
   font-size: 2rem;
   text-indent: 1rem;
+  color: #FAFAFA;
+  background-color: #616161;
+  border: 2px solid #DCDCDC;
+  transition: background 0.15s linear;
+}
+
+form input:hover {
+  background-color: rgba(250, 250, 250, 0.2);
+}
+
+select:hover {
+  background-color: rgba(250, 250, 250, 0.2);
+}
+
+form input:focus {
+  outline: none;
+  border-color: white;
+  box-shadow: 0 0 10px whitesmoke;
+}
+
+select:focus {
+  outline: none;
+  border-color: white;
+  box-shadow: 0 0 10px whitesmoke;
 }
 
 .creditcardNumber {
@@ -100,7 +132,6 @@ form input, select {
 #card {
   width: 100%;
   height: 5rem;
-  border: none;
 }
 
 .nameHolder {
@@ -110,17 +141,16 @@ form input, select {
 #nameHolder {
   width: 100%;
   height: 5rem;
-  border: none;
 }
 
 .expDateContainer {
   flex: 1 0 40%;
 }
 
-.expDate {
+.expDateContainer select {
+  height: 5.6rem;
   width: 45%;
-  height: 5rem;
-  border: none;
+  -webkit-appearance: textarea;
 }
 
 .cvvNumber {
@@ -130,7 +160,6 @@ form input, select {
 #cvvNumber {
   width: 25%;
   height: 5rem;
-  border: none;
 }
 
 form .errormessage {
@@ -153,6 +182,38 @@ form .errormessage {
   display: inline-block;
   color: green;
   font-size: 5rem;
+}
+
+.defaultCardBGColor {
+  background-color: #616161;
+  transition: background 0.3s linear;
+}
+
+.visaCardColor {
+  background-color: blue;
+  transition: background 0.3s linear;
+}
+
+.masterCardColor {
+  background-color: black;
+  transition: background 0.3s linear;
+}
+
+.americanExpressColor {
+  background-color: lightblue;
+  transition: background 0.3s linear;
+}
+
+.inputBorder {
+  border: 2px solid #FAFAFA;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 /*# sourceMappingURL=style.css.map */
