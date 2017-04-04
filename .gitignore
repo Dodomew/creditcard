@@ -4,3 +4,5 @@
 # Node.
 node_modules
 npm-debug.log
+html_dev/images/
+node_modules/

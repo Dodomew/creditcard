@@ -55,6 +55,7 @@ function readForm()
   var formBGColor = document.getElementById("creditcardInputForm");
   var formInputs = document.getElementsByTagName("input");
   var formSelects = document.getElementsByTagName("select");
+  var cardLogo = document.getElementById("ccardImage").src;
 
   if(cardNumbers.length > 0)
   {
@@ -64,6 +65,14 @@ function readForm()
       // 412345678902348
       document.getElementById("errormessage").innerHTML = "Visa";
       formBGColor.className = " visaCardColor";
+
+      // if indexOf cannot find the given string, then... If it does find the string, then skip this
+      if(cardLogo.indexOf("images/visa_2014_logo_alpha_crop.png") == -1)
+      {
+        // Change the src of this element and fade it in
+        document.getElementById("ccardImage").src="images/visa_2014_logo_alpha_crop.png";
+        fadeIn(document.getElementById('ccardImage'), 500);
+      }
 
       // Go through each <input> and add CSS class to it
       for (var i = 0; i < formInputs.length; i++)
@@ -76,13 +85,18 @@ function readForm()
       {
         formSelects[i].className = "visaCardColor" + " inputBorder";
       }
-      console.log("this is a visa card");
     }
     else if (cardNumbers.charAt(0) === "5")
     {
       //this is a Mastercard;
       document.getElementById("errormessage").innerHTML = "Mastercard";
       formBGColor.className = " masterCardColor";
+
+      if(cardLogo.indexOf("images/MasterCard_Logo_small.png") == -1)
+      {
+        document.getElementById("ccardImage").src="images/MasterCard_Logo_small.png";
+        fadeIn(document.getElementById('ccardImage'), 500);
+      }
 
       // Go through each <input> and add CSS class to it
       for (var i = 0; i < formInputs.length; i++)
@@ -95,13 +109,18 @@ function readForm()
       {
         formSelects[i].className = " masterCardColor" + " inputBorder";
       }
-      console.log("this is a Mastercard card");
     }
     else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7")
     {
       //this is an american express card;
       document.getElementById("errormessage").innerHTML = "American Express";
       formBGColor.className = " americanExpressColor";
+
+      if(cardLogo.indexOf("images/amex_american_express_small.png") == -1)
+      {
+        document.getElementById("ccardImage").src="images/amex_american_express_small.png";
+        fadeIn(document.getElementById('ccardImage'), 500);
+      }
 
       // Go through each <input> and add CSS class to it
       for (var i = 0; i < formInputs.length; i++)
@@ -114,7 +133,6 @@ function readForm()
       {
         formSelects[i].className = " americanExpressColor" + " inputBorder";
       }
-      console.log("this is a american express card");
     }
     else if (cardNumbers.charAt(0) != "4" || cardNumbers.charAt(0) != "5" || cardNumbers.charAt(0) != "3")
     {
@@ -123,13 +141,19 @@ function readForm()
     else
     {
       document.getElementById("errormessage").innerHTML = "";
-
     }
   }
   else
   {
     document.getElementById("errormessage").innerHTML = "";
     formBGColor.className = " defaultCardBGColor";
+
+    if(cardLogo.indexOf("images/creditcard_icon_small.png") == -1)
+    {
+      document.getElementById("ccardImage").src="images/creditcard_icon_small.png";
+      fadeIn(document.getElementById('ccardImage'), 500);
+    }
+
 
     // Go through each <input> and add CSS class to it
     for (var i = 0; i < formInputs.length; i++)
@@ -180,7 +204,6 @@ function readForm()
 
   // Take the sum of all the digits
   var sumOfNumbers = totalMultipliedNumber + totalSumOfBaseRemaining + totalNumberAtPosition;
-  console.log(sumOfNumbers);
 
   //  If the total modulo 10 is equal to 0 (if the total ends in zero) then the number is valid according to the Luhn formula;
   //  else it is not valid.
@@ -230,4 +253,24 @@ function readForm()
       return false;
     }
   }
+}
+
+function fadeIn(el, time)
+{
+  el.style.opacity = 0;
+  el.style.display = "block";
+
+  var last = +new Date();
+  var tick = function()
+  {
+    el.style.opacity = +el.style.opacity + (new Date() - last) / time;
+    last = +new Date();
+
+    if (+el.style.opacity < 1)
+    {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+    }
+  };
+
+  tick();
 }

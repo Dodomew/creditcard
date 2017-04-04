@@ -33,8 +33,9 @@ h1
 
 form
 {
-  width: 60%;
-	height: 50vh;
+  // Creditcard size = 85.60mm x 53.98mm. Then -20 px because of padding 2rem, 1 rem = 10px
+  width: 836px;
+  height: 519px;
 	padding: 2rem;
 	margin: auto;
 	border-radius: 1rem;
@@ -78,6 +79,29 @@ select:focus
 	outline: none;
 	border-color: white;
 	box-shadow: 0 0 10px whitesmoke;
+}
+
+#ccardLogo
+{
+  flex: 1 0 50%;
+	text-align: center;
+}
+
+#ccardImage
+{
+  /*
+  -webkit-animation: logoFade 1s once;
+  -moz-animation:    logoFade 1s once;
+  -o-animation:      logoFade 1s once;
+  animation:         logoFade 1s once;
+  */
+  opacity: 1;
+}
+
+@-webkit-keyframes logoFade
+{
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .creditcardNumber
@@ -128,7 +152,7 @@ select:focus
 
 form .errormessage
 {
-	flex: 1 100%;
+	flex: 1 50%;
 	font-size: 5rem;
 	min-height: 25%;
 }
