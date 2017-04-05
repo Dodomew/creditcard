@@ -32,48 +32,50 @@
 
           <form id="creditcardInputForm" class=""> <!-- Hier begint de form  onsubmit="return readForm() -->
 
-						<div class="errormessage" id="errormessage"></div>
-						<div class="checkmark" id="card-checkmark"></div>
+						<div id="movingLightContainer" class=""></div>
 
-						<picture id="ccardLogo">
+							<div class="errormessage" id="errormessage"></div>
+							<div class="checkmark" id="card-checkmark"></div>
 
-							<img id="ccardImage" src="images/creditcard_icon_small.png" alt="Creditcard Logo">
+							<picture id="ccardLogo">
 
-						</picture>
+								<img id="ccardImage" src="images/creditcard_icon_small.png" alt="Creditcard Logo">
 
-            <div class='creditcardNumber'>
+							</picture>
 
-              <input type="number" id='card' class="" placeholder="XXXX-XXXX-XXXX-XXXX" pattern="[0-9]{13,16}" min="0" title="Your creditcard number." onkeyup="return readForm()" required/>
+	            <div class='creditcardNumber'>
 
-            </div>
+	              <input type="number" id='card' class="" placeholder="XXXX-XXXX-XXXX-XXXX" pattern="[0-9]{13,16}" min="0" title="Your creditcard number." onkeyup="return readForm()" required/>
 
-						<div class="expDateContainer">
+	            </div>
 
-							<select class="" id="expDateMonth">
+							<div class="expDateContainer">
 
-								<option value="01">January</option>
-								<option value="02">February </option>
-								<option value="03">March</option>
-								<option value="04">April</option>
-								<option value="05">May</option>
-								<option value="06">June</option>
-								<option value="07">July</option>
-								<option value="08">August</option>
-								<option value="09">September</option>
-								<option value="10">October</option>
-								<option value="11">November</option>
-								<option value="12">December</option>
+								<select class="" id="expDateMonth">
 
-						</select>
+									<option value="01">January</option>
+									<option value="02">February </option>
+									<option value="03">March</option>
+									<option value="04">April</option>
+									<option value="05">May</option>
+									<option value="06">June</option>
+									<option value="07">July</option>
+									<option value="08">August</option>
+									<option value="09">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+
+								</select>
 
 						<select class="" id="expDateYear">
 
-								<option value="16"> 2016</option>
-								<option value="17"> 2017</option>
-								<option value="18"> 2018</option>
-								<option value="19"> 2019</option>
-								<option value="20"> 2020</option>
-								<option value="21"> 2021</option>
+							<option value="16"> 2016</option>
+							<option value="17"> 2017</option>
+							<option value="18"> 2018</option>
+							<option value="19"> 2019</option>
+							<option value="20"> 2020</option>
+							<option value="21"> 2021</option>
 
 						</select>
 

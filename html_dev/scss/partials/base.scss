@@ -9,13 +9,12 @@ $font-normal: 'Roboto', sans-serif;
 
 // Colors used as background throughout website
 $color-ccard-visa: blue;
-$color-ccard-visa-light: lightblue;
 $color-ccard-mastercard: black;
-$color-ccard-mastercard-light: grey;
 $color-ccard-amex: lightblue;
-$color-ccard-amex-light: skyblue;
 $color-ccard-default: #616161;
-$color-ccard-default-hover: rgba(250,250,250,0.2);
+//$color-ccard-default-hover: lighten($color-ccard-default, 10%);
+$color-ccard-default-hover: rgba(250, 250, 250, 0.2);
+$color-ccard-movingLight: rgba(250, 250, 250, 0.2);
 
 // Colors used for typography or borders
 $color-typography-white: #FAFAFA;

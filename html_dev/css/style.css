@@ -86,7 +86,7 @@ form {
   height: 519px;
   padding: 2rem;
   margin: auto;
-  border-radius: 1rem;
+  border-radius: 2rem;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -108,10 +108,6 @@ form input:hover {
   background-color: rgba(250, 250, 250, 0.2);
 }
 
-select:hover {
-  background-color: rgba(250, 250, 250, 0.2);
-}
-
 form input:focus {
   outline: none;
   border-color: white;
@@ -124,19 +120,42 @@ select:focus {
   box-shadow: 0 0 10px whitesmoke;
 }
 
+.movingLight {
+  width: 900px;
+  height: 50px;
+  background-color: rgba(250, 250, 250, 0.2);
+  position: absolute;
+  top: 0px;
+  opacity: 0;
+  -webkit-animation: movingLightAnim 0.75s ease-in-out;
+  transform: rotate(-5deg);
+}
+
+@-webkit-keyframes movingLightAnim {
+  0% {
+    top: 0px;
+    opacity: 0;
+    height: 25px;
+  }
+  50% {
+    opacity: 1;
+    height: 100px;
+  }
+  100% {
+    top: 600px;
+    opacity: 0;
+    height: 25px;
+  }
+}
 #ccardLogo {
   flex: 1 0 50%;
   text-align: center;
 }
 
 #ccardImage {
-  /*
-  -webkit-animation: logoFade 1s once;
-  -moz-animation:    logoFade 1s once;
-  -o-animation:      logoFade 1s once;
-  animation:         logoFade 1s once;
-  */
   opacity: 1;
+  display: block;
+  float: right;
 }
 
 @-webkit-keyframes logoFade {
@@ -176,6 +195,12 @@ select:focus {
   -webkit-appearance: textarea;
 }
 
+/* Cannot seem to fix that children do not get this color either
+.expDateContainer select:hover
+{
+  background-color: $color-ccard-default-hover;
+}
+*/
 .cvvNumber {
   flex: 1 0 100%;
 }
@@ -188,7 +213,6 @@ select:focus {
 form .errormessage {
   flex: 1 50%;
   font-size: 5rem;
-  min-height: 25%;
 }
 
 .submitContainer {

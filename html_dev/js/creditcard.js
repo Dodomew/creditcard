@@ -56,6 +56,7 @@ function readForm()
   var formInputs = document.getElementsByTagName("input");
   var formSelects = document.getElementsByTagName("select");
   var cardLogo = document.getElementById("ccardImage").src;
+  var movingLightAnimation = document.getElementById("movingLightContainer");
 
   if(cardNumbers.length > 0)
   {
@@ -72,6 +73,7 @@ function readForm()
         // Change the src of this element and fade it in
         document.getElementById("ccardImage").src="images/visa_2014_logo_alpha_crop.png";
         fadeIn(document.getElementById('ccardImage'), 500);
+        movingLightAnimation.className = "movingLight";
       }
 
       // Go through each <input> and add CSS class to it
@@ -96,6 +98,7 @@ function readForm()
       {
         document.getElementById("ccardImage").src="images/MasterCard_Logo_small.png";
         fadeIn(document.getElementById('ccardImage'), 500);
+        movingLightAnimation.className = "movingLight";
       }
 
       // Go through each <input> and add CSS class to it
@@ -120,6 +123,7 @@ function readForm()
       {
         document.getElementById("ccardImage").src="images/amex_american_express_small.png";
         fadeIn(document.getElementById('ccardImage'), 500);
+        movingLightAnimation.className = "movingLight";
       }
 
       // Go through each <input> and add CSS class to it
@@ -150,6 +154,7 @@ function readForm()
 
     if(cardLogo.indexOf("images/creditcard_icon_small.png") == -1)
     {
+      movingLightAnimation.className = "";
       document.getElementById("ccardImage").src="images/creditcard_icon_small.png";
       fadeIn(document.getElementById('ccardImage'), 500);
     }
