@@ -42,11 +42,9 @@
 function readForm()
 {
   // Get the form input value;
-  var cardNumbers = (document.getElementById("card").value);
-  var greenCheckmark = document.getElementById("card-checkmark");
+  var cardNumbers = document.getElementById("card").value;
+  // document.getElementById("card").addEventListener("keypress", checkForInvalidChars());
 
-  //creates an Array from the string. It outputs like "1", "2" etc
-  var creditNumContainer = Array.from(cardNumbers);
   // create var to hold sum of these numbers
   var totalNumberAtPosition = 0;
   var totalMultipliedNumber = 0;
@@ -57,6 +55,9 @@ function readForm()
   var formSelects = document.getElementsByTagName("select");
   var cardLogo = document.getElementById("ccardImage").src;
   var movingLightAnimation = document.getElementById("movingLightContainer");
+  var greenCheckmark = document.getElementById("card-checkmark");
+
+
 
   if(cardNumbers.length > 0)
   {
@@ -68,10 +69,10 @@ function readForm()
       formBGColor.className = " visaCardColor";
 
       // if indexOf cannot find the given string, then... If it does find the string, then skip this
-      if(cardLogo.indexOf("images/visa_2014_logo_alpha_crop.png") == -1)
+      if(cardLogo.indexOf("images/Visa_logo_small.png") == -1)
       {
         // Change the src of this element and fade it in
-        document.getElementById("ccardImage").src="images/visa_2014_logo_alpha_crop.png";
+        document.getElementById("ccardImage").src="images/Visa_logo_small.png";
         fadeIn(document.getElementById('ccardImage'), 500);
         movingLightAnimation.className = "movingLight";
       }
@@ -119,9 +120,9 @@ function readForm()
       document.getElementById("errormessage").innerHTML = "American Express";
       formBGColor.className = " americanExpressColor";
 
-      if(cardLogo.indexOf("images/amex_american_express_small.png") == -1)
+      if(cardLogo.indexOf("images/American-Express-icon-portrait-small.png") == -1)
       {
-        document.getElementById("ccardImage").src="images/amex_american_express_small.png";
+        document.getElementById("ccardImage").src="images/American-Express-icon-portrait-small.png";
         fadeIn(document.getElementById('ccardImage'), 500);
         movingLightAnimation.className = "movingLight";
       }
@@ -174,21 +175,18 @@ function readForm()
   }
 
 
-  // take the array length, then do - 1, because array length != length (array = 0 based, everything else starts at 1)
-  for (var i = creditNumContainer.length - 1; i >= 0; i -= 2)
+  // start at the end of array and skip every other index
+  for (var i = cardNumbers.length - 1; i >= 0; i -= 2)
   {
     // each index.value string is parsed to an integer
-    var numberAtPosition = parseInt(creditNumContainer[i], 10);
-    console.log(numberAtPosition);
+    var numberAtPosition = parseInt(cardNumbers[i], 10);
     var totalNumberAtPosition = totalNumberAtPosition + numberAtPosition;
-    console.log(totalNumberAtPosition);
   }
 
   // start at the end of the array, but then do -2. -1 = the last index in the array, -2 = secondlast index.
-  for (var j = creditNumContainer.length - 2; j >= 0; j -= 2)
+  for (var j = cardNumbers.length - 2; j >= 0; j -= 2)
   {
-    var multipliedNumber = (parseInt(creditNumContainer[j], 10)) * 2; // the number is multiplied by 2
-    console.log(multipliedNumber);
+    var multipliedNumber = (parseInt(cardNumbers[j], 10)) * 2; // the number is multiplied by 2
     // If the result of this doubling operation is greater than 9 (e.g., 8 × 2 = 16),
     // then add the digits of the product (e.g., 16: 1 + 6 = 7, 18: 1 + 8 = 9)
 
@@ -198,7 +196,6 @@ function readForm()
       var remainingNumber = multipliedNumber % 10;
       var sumOfBaseRemaining = baseNumber + remainingNumber;
       var totalSumOfBaseRemaining = totalSumOfBaseRemaining + sumOfBaseRemaining;
-      console.log(sumOfBaseRemaining);
     }
     else
     {
@@ -207,11 +204,9 @@ function readForm()
     }
   }
 
-  // Take the sum of all the digits
   var sumOfNumbers = totalMultipliedNumber + totalSumOfBaseRemaining + totalNumberAtPosition;
 
-  //  If the total modulo 10 is equal to 0 (if the total ends in zero) then the number is valid according to the Luhn formula;
-  //  else it is not valid.
+  //  If the total modulo 10 is equal to 0 then the number is valid according to the Luhn formula;
   var validityCreditCard = sumOfNumbers % 10;
 
   if(cardNumbers.length > 12)
@@ -254,7 +249,7 @@ function readForm()
     else
     {
       console.log("Creditcard is NOT valid!");
-      document.getElementById("errormessage").innerHTML = "Creditcard not recognized!"
+      document.getElementById("errormessage").innerHTML += " " + "<span class='checkmark'> " + "&#10007;" + "<h5> Cardnumber invalid</h5></span>";
       return false;
     }
   }
@@ -279,3 +274,27 @@ function fadeIn(el, time)
 
   tick();
 }
+
+function checkForInvalidChars()
+{
+  var cardNumbers = document.getElementById("card").value;
+  var cardNumbers = cardNumbers.replace(/\D/g, '');
+  document.getElementById("card").value = cardNumbers;
+}
+
+/*
+function joinStringsFromArray()
+{
+  var cardNumbers = document.getElementById("card").value;
+  var creditNumContainer = Array.from(cardNumbers);
+  var bigStringCreditNumber = "";
+  // creditNumContainer.join('');
+  for (var i = 0; i < creditNumContainer.length; i++)
+  {
+    var creditNum = creditNumContainer[i];
+    bigStringCreditNumber = bigStringCreditNumber + creditNumContainer[creditNum];
+  }
+  console.log(bigStringCreditNumber);
+  return bigStringCreditNumber;
+}
+*/

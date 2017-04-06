@@ -9,11 +9,17 @@ html, body
   margin: 0 auto;
   padding: 0;
 	color: rgb(240,240,240);
+  font-family: monospace;
 }
 
 h1
 {
   font-size: 4rem;
+}
+
+h5
+{
+  font-size: 2rem;
 }
 
 .container
@@ -114,7 +120,7 @@ select:focus
 
 #ccardLogo
 {
-  flex: 1 0 50%;
+  flex: 1 0 30%;
 	text-align: center;
 }
 
@@ -141,6 +147,7 @@ select:focus
 {
 	width: 100%;
 	height: 5rem;
+  font-family: inherit;
 }
 
 .nameHolder
@@ -152,6 +159,7 @@ select:focus
 {
 	width: 100%;
 	height: 5rem;
+  font-family: inherit;
 }
 
 .expDateContainer
@@ -163,10 +171,12 @@ select:focus
 {
 	height: 5.6rem;
 	width: 45%;
-	-webkit-appearance: textarea;
+	-webkit-appearance: menulist;
+  font-family: inherit;
 }
 
-/* Cannot seem to fix that children do not get this color either
+/* Cannot seem to fix that children do not get this color eitherfok
+
 .expDateContainer select:hover
 {
   background-color: $color-ccard-default-hover;
@@ -181,12 +191,13 @@ select:focus
 {
 	width: 25%;
 	height: 5rem;
+  font-family: inherit;
 }
 
-form .errormessage
+.errormessage
 {
-	flex: 1 50%;
-	font-size: 5rem;
+	flex: 1 70%;
+	font-size: 4rem;
 }
 
 .submitContainer
@@ -204,8 +215,14 @@ form .errormessage
 .checkmark
 {
 	display: inline-block;
-	color: green;
-	font-size: 5rem;
+	color: white;
+	font-size: 4rem;
+}
+
+.checkmark h5
+{
+  display: inline;
+  vertical-align: middle;
 }
 
 .defaultCardBGColor
