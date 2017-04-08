@@ -197,13 +197,13 @@ select:focus {
 }
 
 .expDateContainer select {
-  height: 5.6rem;
+  height: 5.7rem;
   width: 45%;
   -webkit-appearance: menulist;
   font-family: inherit;
 }
 
-/* Cannot seem to fix that children do not get this color eitherfok
+/* Cannot seem to fix that children do not get this color either
 
 .expDateContainer select:hover
 {

@@ -42,8 +42,7 @@
 function readForm()
 {
   // Get the form input value;
-  var cardNumbers = document.getElementById("card").value;
-  // document.getElementById("card").addEventListener("keypress", checkForInvalidChars());
+  var cardNumbersOriginal = document.getElementById("card").value;
 
   // create var to hold sum of these numbers
   var totalNumberAtPosition = 0;
@@ -57,121 +56,48 @@ function readForm()
   var movingLightAnimation = document.getElementById("movingLightContainer");
   var greenCheckmark = document.getElementById("card-checkmark");
 
+  // remove - from input for algorithm check
+  var cardNumbers = cardNumbersOriginal.split('-');
+  cardNumbers = cardNumbers.join("");
 
+ // add - to input for user to see
+ if(cardNumbers != "")
+ {
+   var arrayFromNumbers = cardNumbers.match(/.{1,4}/g);
+   var cardNumbersWithDashes = arrayFromNumbers.join('-');
+ }
+ else
+ {
+   var arrayFromNumbers = "";
+   var cardNumbersWithDashes = "";
+ }
+
+  document.getElementById("card").value = cardNumbersWithDashes;
 
   if(cardNumbers.length > 0)
   {
     if (cardNumbers.charAt(0) === "4")
     {
-      // this is a visa card;
-      // 412345678902348
-      document.getElementById("errormessage").innerHTML = "Visa";
-      formBGColor.className = " visaCardColor";
-
-      // if indexOf cannot find the given string, then... If it does find the string, then skip this
-      if(cardLogo.indexOf("images/Visa_logo_small.png") == -1)
-      {
-        // Change the src of this element and fade it in
-        document.getElementById("ccardImage").src="images/Visa_logo_small.png";
-        fadeIn(document.getElementById('ccardImage'), 500);
-        movingLightAnimation.className = "movingLight";
-      }
-
-      // Go through each <input> and add CSS class to it
-      for (var i = 0; i < formInputs.length; i++)
-      {
-        formInputs[i].className = "visaCardColor" + " inputBorder";
-      }
-
-      // Go through each <select> and add CSS class to it
-      for (var i = 0; i < formSelects.length; i++)
-      {
-        formSelects[i].className = "visaCardColor" + " inputBorder";
-      }
+      visaCreditcard(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark);
     }
     else if (cardNumbers.charAt(0) === "5")
     {
-      //this is a Mastercard;
-      document.getElementById("errormessage").innerHTML = "Mastercard";
-      formBGColor.className = " masterCardColor";
-
-      if(cardLogo.indexOf("images/MasterCard_Logo_small.png") == -1)
-      {
-        document.getElementById("ccardImage").src="images/MasterCard_Logo_small.png";
-        fadeIn(document.getElementById('ccardImage'), 500);
-        movingLightAnimation.className = "movingLight";
-      }
-
-      // Go through each <input> and add CSS class to it
-      for (var i = 0; i < formInputs.length; i++)
-      {
-        formInputs[i].className = " masterCardColor" + " inputBorder";
-      }
-
-      // Go through each <select> and add CSS class to it
-      for (var i = 0; i < formSelects.length; i++)
-      {
-        formSelects[i].className = " masterCardColor" + " inputBorder";
-      }
+      masterCardCreditcard(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark);
     }
     else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7")
     {
-      //this is an american express card;
-      document.getElementById("errormessage").innerHTML = "American Express";
-      formBGColor.className = " americanExpressColor";
-
-      if(cardLogo.indexOf("images/American-Express-icon-portrait-small.png") == -1)
-      {
-        document.getElementById("ccardImage").src="images/American-Express-icon-portrait-small.png";
-        fadeIn(document.getElementById('ccardImage'), 500);
-        movingLightAnimation.className = "movingLight";
-      }
-
-      // Go through each <input> and add CSS class to it
-      for (var i = 0; i < formInputs.length; i++)
-      {
-        formInputs[i].className = " americanExpressColor" + " inputBorder";
-      }
-
-      // Go through each <select> and add CSS class to it
-      for (var i = 0; i < formSelects.length; i++)
-      {
-        formSelects[i].className = " americanExpressColor" + " inputBorder";
-      }
-    }
-    else if (cardNumbers.charAt(0) != "4" || cardNumbers.charAt(0) != "5" || cardNumbers.charAt(0) != "3")
-    {
-      document.getElementById("errormessage").innerHTML = "?";
+      americanExpressCreditcard(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark);
     }
     else
     {
-      document.getElementById("errormessage").innerHTML = "";
+      document.getElementById("errormessage").innerHTML = "?";
+      defaultCreditcardColor(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark);
     }
   }
   else
   {
     document.getElementById("errormessage").innerHTML = "";
-    formBGColor.className = " defaultCardBGColor";
-
-    if(cardLogo.indexOf("images/creditcard_icon_small.png") == -1)
-    {
-      movingLightAnimation.className = "";
-      document.getElementById("ccardImage").src="images/creditcard_icon_small.png";
-      fadeIn(document.getElementById('ccardImage'), 500);
-    }
-
-
-    // Go through each <input> and add CSS class to it
-    for (var i = 0; i < formInputs.length; i++)
-    {
-      formInputs[i].className = " defaultCardBGColor" + " inputBorder";
-    }
-
-    // Go through each <select> and add CSS class to it
-    for (var i = 0; i < formSelects.length; i++)
-    {
-      formSelects[i].className = " defaultCardBGColor" + " inputBorder";
-    }
+    defaultCreditcardColor(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark);
   }
 
 
@@ -215,40 +141,58 @@ function readForm()
     {
       console.log("Creditcard is valid");
 
-      // Check the characters at the first position of the value string of "card". If it's a certain number AND it matches other criteria, it is a certain card.
-      // charAt looks at the position in a string. So (0) looks at the first position.
       if (cardNumbers.charAt(0) === "4" && cardNumbers.length >= 13 && cardNumbers.length <= 16)
       {
         // this is a visa card;
         // 412345678902348
         document.getElementById("errormessage").innerHTML = "Visa " + "<span class='checkmark'>" + "&#10004;" + "</span>";
-        console.log("this is a visa card");
         return true;
       }
       else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
       {
         //this is a Mastercard;
         document.getElementById("errormessage").innerHTML = "Mastercard " + "<span class='checkmark'>" + "&#10004;" + "</span>";
-        console.log("this is a Mastercard card");
         return true;
       }
       else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
       {
         //this is an american express card;
         document.getElementById("errormessage").innerHTML = "American Express " + "<span class='checkmark'>" + "&#10004;" + "</span>";
-        console.log("this is a american express card");
         return true;
       }
       else
       {
-        console.log("Creditcard is NOT valid!");
-        document.getElementById("errormessage").innerHTML = "This creditcard number is not valid!"
+        return false;
+      }
+    }
+    else if (validityCreditCard != 0)
+    {
+      if (cardNumbers.charAt(0) === "4" && cardNumbers.length >= 13 && cardNumbers.length <= 16)
+      {
+        // this is a visa card;
+        // 412345678902348
+        document.getElementById("errormessage").innerHTML = "Visa " + "<span class='checkmark'> " + "&#10007;" + "<h5> Cardnumber invalid</h5></span>";
+        return false;
+      }
+      else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
+      {
+        //this is a Mastercard;
+        document.getElementById("errormessage").innerHTML = "Mastercard " + "<span class='checkmark'> " + "&#10007;" + "<h5> Cardnumber invalid</h5></span>";
+        return false;
+      }
+      else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
+      {
+        //this is an american express card;
+        document.getElementById("errormessage").innerHTML = "American Express " + "<span class='checkmark'> " + "&#10007;" + "<h5> Cardnumber invalid</h5></span>";
+        return false;
+      }
+      else
+      {
         return false;
       }
     }
     else
     {
-      console.log("Creditcard is NOT valid!");
       document.getElementById("errormessage").innerHTML += " " + "<span class='checkmark'> " + "&#10007;" + "<h5> Cardnumber invalid</h5></span>";
       return false;
     }
@@ -275,26 +219,106 @@ function fadeIn(el, time)
   tick();
 }
 
-function checkForInvalidChars()
+function defaultCreditcardColor(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark)
 {
-  var cardNumbers = document.getElementById("card").value;
-  var cardNumbers = cardNumbers.replace(/\D/g, '');
-  document.getElementById("card").value = cardNumbers;
+  formBGColor.className = " defaultCardBGColor";
+
+  if(cardLogo.indexOf("images/creditcard_icon_small.png") == -1)
+  {
+    movingLightAnimation.className = "";
+    document.getElementById("ccardImage").src="images/creditcard_icon_small.png";
+    fadeIn(document.getElementById('ccardImage'), 500);
+  }
+
+  // Go through each <input> and add CSS class to it
+  for (var i = 0; i < formInputs.length; i++)
+  {
+    formInputs[i].className = " defaultCardBGColor" + " inputBorder";
+  }
+
+  // Go through each <select> and add CSS class to it
+  for (var i = 0; i < formSelects.length; i++)
+  {
+    formSelects[i].className = " defaultCardBGColor" + " inputBorder";
+  }
 }
 
-/*
-function joinStringsFromArray()
+function americanExpressCreditcard(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark)
 {
-  var cardNumbers = document.getElementById("card").value;
-  var creditNumContainer = Array.from(cardNumbers);
-  var bigStringCreditNumber = "";
-  // creditNumContainer.join('');
-  for (var i = 0; i < creditNumContainer.length; i++)
+  //this is an american express card;
+  document.getElementById("errormessage").innerHTML = "American Express";
+  formBGColor.className = " americanExpressColor";
+
+  if(cardLogo.indexOf("images/American-Express-icon-portrait-small.png") == -1)
   {
-    var creditNum = creditNumContainer[i];
-    bigStringCreditNumber = bigStringCreditNumber + creditNumContainer[creditNum];
+    document.getElementById("ccardImage").src="images/American-Express-icon-portrait-small.png";
+    fadeIn(document.getElementById('ccardImage'), 500);
+    movingLightAnimation.className = "movingLight";
   }
-  console.log(bigStringCreditNumber);
-  return bigStringCreditNumber;
+
+  // Go through each <input> and add CSS class to it
+  for (var i = 0; i < formInputs.length; i++)
+  {
+    formInputs[i].className = " americanExpressColor" + " inputBorder";
+  }
+
+  // Go through each <select> and add CSS class to it
+  for (var i = 0; i < formSelects.length; i++)
+  {
+    formSelects[i].className = " americanExpressColor" + " inputBorder";
+  }
 }
-*/
+
+function masterCardCreditcard(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark)
+{
+  //this is a Mastercard;
+  document.getElementById("errormessage").innerHTML = "Mastercard";
+  formBGColor.className = " masterCardColor";
+
+  if(cardLogo.indexOf("images/MasterCard_Logo_small.png") == -1)
+  {
+    document.getElementById("ccardImage").src="images/MasterCard_Logo_small.png";
+    fadeIn(document.getElementById('ccardImage'), 500);
+    movingLightAnimation.className = "movingLight";
+  }
+
+  // Go through each <input> and add CSS class to it
+  for (var i = 0; i < formInputs.length; i++)
+  {
+    formInputs[i].className = " masterCardColor" + " inputBorder";
+  }
+
+  // Go through each <select> and add CSS class to it
+  for (var i = 0; i < formSelects.length; i++)
+  {
+    formSelects[i].className = " masterCardColor" + " inputBorder";
+  }
+}
+
+function visaCreditcard(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark)
+{
+  // this is a visa card;
+  // 412345678902348
+  document.getElementById("errormessage").innerHTML = "Visa";
+  formBGColor.className = " visaCardColor";
+
+  if(cardLogo.indexOf("images/Visa_logo_small.png") == -1)
+  {
+    // Change the src of this element and fade it in
+    document.getElementById("ccardImage").src="images/Visa_logo_small.png";
+    fadeIn(document.getElementById('ccardImage'), 500);
+    movingLightAnimation.className = "movingLight";
+  }
+
+  // Go through each <input> and add CSS class to it
+  for (var i = 0; i < formInputs.length; i++)
+  {
+    formInputs[i].className = "visaCardColor" + " inputBorder";
+  }
+
+  // Go through each <select> and add CSS class to it
+  for (var i = 0; i < formSelects.length; i++)
+  {
+    formSelects[i].className = "visaCardColor" + " inputBorder";
+  }
+}
