@@ -90,7 +90,7 @@ select:focus
   position: absolute;
   top: 0px;
   opacity: 0;
-  -webkit-animation: movingLightAnim 0.75s ease-in-out;
+  -webkit-animation: movingLightAnim 0.5s ease-in-out;
   transform: rotate(-5deg);
 }
 
@@ -129,12 +129,6 @@ select:focus
   opacity: 1;
   display: block;
   float: right;
-}
-
-@-webkit-keyframes logoFade
-{
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
 }
 
 .creditcardNumber
@@ -237,7 +231,7 @@ select:focus
 	transition: background 0.3s linear;
 }
 
-.masterCardColor //logo is one red circle intersecting with an orange circle
+.masterCardColor
 {
 	background-color: $color-ccard-mastercard;
 	transition: background 0.3s linear;
@@ -262,4 +256,57 @@ input::-webkit-inner-spin-button
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+@include responsiveLayoutMobile()
+{
+  form
+  {
+    width: 90%;
+    padding: 1rem;
+    height: auto;
+    text-align: center;
+  }
+
+  form div
+  {
+    margin: 1rem;
+  }
+
+  .errormessage
+  {
+  	flex: 1 100%;
+    font-size: 3rem;
+  }
+
+  .checkmark
+  {
+    font-size: 3rem;
+  }
+
+  #ccardLogo
+  {
+    flex: 0 0 100%;
+  }
+
+  #ccardImage
+  {
+    float: none;
+    margin: auto;
+  }
+
+  .expDateContainer
+  {
+    flex: 1 0 100%;
+  }
+
+  .nameHolder
+  {
+    flex: 1 0 100%;
+  }
+
+  .cvvNumber
+  {
+  	flex: 1 0 100%;
+  }
 }

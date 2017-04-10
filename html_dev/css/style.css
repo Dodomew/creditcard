@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700);
 /* ----- Mobile phones and tablets ----- */
 /* https://davidwalsh.name/write-media-queries-sass */
 /* Responsive Layout design of Frontpage */
@@ -132,7 +131,7 @@ select:focus {
   position: absolute;
   top: 0px;
   opacity: 0;
-  -webkit-animation: movingLightAnim 0.75s ease-in-out;
+  -webkit-animation: movingLightAnim 0.5s ease-in-out;
   transform: rotate(-5deg);
 }
 
@@ -163,14 +162,6 @@ select:focus {
   float: right;
 }
 
-@-webkit-keyframes logoFade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .creditcardNumber {
   flex: 1 0 100%;
   text-align: center;
@@ -276,6 +267,49 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
   /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+@media (min-width: 240px) and (max-width: 767px) and (min-height: 240px) and (max-height: 767px) and (-webkit-min-device-pixel-ratio: 1) {
+  form {
+    width: 90%;
+    padding: 1rem;
+    height: auto;
+    text-align: center;
+  }
+
+  form div {
+    margin: 1rem;
+  }
+
+  .errormessage {
+    flex: 1 100%;
+    font-size: 3rem;
+  }
+
+  .checkmark {
+    font-size: 3rem;
+  }
+
+  #ccardLogo {
+    flex: 0 0 100%;
+  }
+
+  #ccardImage {
+    float: none;
+    margin: auto;
+  }
+
+  .expDateContainer {
+    flex: 1 0 100%;
+  }
+
+  .nameHolder {
+    flex: 1 0 100%;
+  }
+
+  .cvvNumber {
+    flex: 1 0 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -135,6 +135,8 @@ function readForm()
   //  If the total modulo 10 is equal to 0 then the number is valid according to the Luhn formula;
   var validityCreditCard = sumOfNumbers % 10;
 
+  movingLightAnimation.className = "";
+
   if(cardNumbers.length > 12)
   {
     if(validityCreditCard == 0)
@@ -146,18 +148,21 @@ function readForm()
         // this is a visa card;
         // 412345678902348
         document.getElementById("errormessage").innerHTML = "Visa " + "<span class='checkmark'>" + "&#10004;" + "</span>";
+        movingLightAnimation.className = "movingLight";
         return true;
       }
       else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
       {
         //this is a Mastercard;
         document.getElementById("errormessage").innerHTML = "Mastercard " + "<span class='checkmark'>" + "&#10004;" + "</span>";
+        movingLightAnimation.className = "movingLight";
         return true;
       }
       else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
       {
         //this is an american express card;
         document.getElementById("errormessage").innerHTML = "American Express " + "<span class='checkmark'>" + "&#10004;" + "</span>";
+        movingLightAnimation.className = "movingLight";
         return true;
       }
       else
@@ -253,7 +258,6 @@ function americanExpressCreditcard(formBGColor, formInputs, formSelects, cardLog
   {
     document.getElementById("ccardImage").src="images/American-Express-icon-portrait-small.png";
     fadeIn(document.getElementById('ccardImage'), 500);
-    movingLightAnimation.className = "movingLight";
   }
 
   // Go through each <input> and add CSS class to it
@@ -279,7 +283,6 @@ function masterCardCreditcard(formBGColor, formInputs, formSelects, cardLogo, mo
   {
     document.getElementById("ccardImage").src="images/MasterCard_Logo_small.png";
     fadeIn(document.getElementById('ccardImage'), 500);
-    movingLightAnimation.className = "movingLight";
   }
 
   // Go through each <input> and add CSS class to it
@@ -307,7 +310,6 @@ function visaCreditcard(formBGColor, formInputs, formSelects, cardLogo, movingLi
     // Change the src of this element and fade it in
     document.getElementById("ccardImage").src="images/Visa_logo_small.png";
     fadeIn(document.getElementById('ccardImage'), 500);
-    movingLightAnimation.className = "movingLight";
   }
 
   // Go through each <input> and add CSS class to it
