@@ -20,34 +20,14 @@
 
 */
 
-/*
-
-  Luhn algorithm
-
-  From the rightmost digit, which is the check digit, and moving left, double the value of every second digit.
-  If the result of this doubling operation is greater than 9 (e.g., 8 × 2 = 16), then add the digits of the product (e.g., 16: 1 + 6 = 7, 18: 1 + 8 = 9)
-  or alternatively subtract 9 from the product (e.g., 16: 16 - 9 = 7, 18: 18 - 9 = 9).
-  Take the sum of all the digits.
-  If the total modulo 10 is equal to 0 (if the total ends in zero) then the number is valid according to the Luhn formula; else it is not valid.
-
-  Each of the numbers 79927398710, 79927398711, 79927398712, 79927398713, 79927398714, 79927398715, 79927398716, 79927398717, 79927398718, 79927398719 can be validated as follows.
-
-  Double every second digit, from the rightmost: (1×2) = 2, (8×2) = 16, (3×2) = 6, (2×2) = 4, (9×2) = 18
-  Sum all the individual digits (digits in parentheses are the products from Step 1): x (the check digit) + (2) + 7 + (1+6) + 9 + (6) + 7 + (4) + 9 + (1+8) + 7 = x + 67.
-  If the sum is a multiple of 10, the account number is possibly valid. Note that 3 is the only valid digit that produces a sum (70) that is a multiple of 10.
-  Thus these account numbers are all invalid except possibly 79927398713 which has the correct check digit.
-
-*/
-
 function readForm()
 {
-  // Get the form input value;
   var cardNumbersOriginal = document.getElementById("card").value;
 
-  // create var to hold sum of these numbers
   var totalNumberAtPosition = 0;
   var totalMultipliedNumber = 0;
   var totalSumOfBaseRemaining = 0;
+  
   // For styling the creditcard visually
   var formBGColor = document.getElementById("creditcardInputForm");
   var formInputs = document.getElementsByTagName("input");
@@ -56,11 +36,14 @@ function readForm()
   var movingLightAnimation = document.getElementById("movingLightContainer");
   var greenCheckmark = document.getElementById("card-checkmark");
 
-  // remove - from input for algorithm check
+  // Styling submit button
+  var activateButton = document.getElementById("submitButton");
+
+  // remove dashes from input for algorithm check
   var cardNumbers = cardNumbersOriginal.split('-');
   cardNumbers = cardNumbers.join("");
 
- // add - to input for user to see
+ // add dashes to input for user to see
  if(cardNumbers != "")
  {
    var arrayFromNumbers = cardNumbers.match(/.{1,4}/g);
@@ -100,25 +83,24 @@ function readForm()
     defaultCreditcardColor(formBGColor, formInputs, formSelects, cardLogo, movingLightAnimation, greenCheckmark);
   }
 
-
+  // Luhn algorithm
   // start at the end of array and skip every other index
   for (var i = cardNumbers.length - 1; i >= 0; i -= 2)
   {
-    // each index.value string is parsed to an integer
     var numberAtPosition = parseInt(cardNumbers[i], 10);
     var totalNumberAtPosition = totalNumberAtPosition + numberAtPosition;
   }
 
-  // start at the end of the array, but then do -2. -1 = the last index in the array, -2 = secondlast index.
+  // start at the end of the array, but go to secondlast index
   for (var j = cardNumbers.length - 2; j >= 0; j -= 2)
   {
-    var multipliedNumber = (parseInt(cardNumbers[j], 10)) * 2; // the number is multiplied by 2
+    var multipliedNumber = (parseInt(cardNumbers[j], 10)) * 2;
     // If the result of this doubling operation is greater than 9 (e.g., 8 × 2 = 16),
     // then add the digits of the product (e.g., 16: 1 + 6 = 7, 18: 1 + 8 = 9)
 
     if (multipliedNumber > 9)
     {
-      var baseNumber = Math.floor(multipliedNumber / 10); //round down to nearest integer; it should always be 1
+      var baseNumber = Math.floor(multipliedNumber / 10);
       var remainingNumber = multipliedNumber % 10;
       var sumOfBaseRemaining = baseNumber + remainingNumber;
       var totalSumOfBaseRemaining = totalSumOfBaseRemaining + sumOfBaseRemaining;
@@ -136,6 +118,7 @@ function readForm()
   var validityCreditCard = sumOfNumbers % 10;
 
   movingLightAnimation.className = "";
+  activateButton.className = "defaultSubmit";
 
   if(cardNumbers.length > 12)
   {
@@ -148,22 +131,19 @@ function readForm()
         // this is a visa card;
         // 412345678902348
         document.getElementById("errormessage").innerHTML = "Visa " + "<span class='checkmark'>" + "&#10004;" + "</span>";
-        movingLightAnimation.className = "movingLight";
-        return true;
+        creditcardIsValid(movingLightAnimation, activateButton);
       }
       else if (cardNumbers.charAt(0) === "5" && cardNumbers.length === 16)
       {
         //this is a Mastercard;
         document.getElementById("errormessage").innerHTML = "Mastercard " + "<span class='checkmark'>" + "&#10004;" + "</span>";
-        movingLightAnimation.className = "movingLight";
-        return true;
+        creditcardIsValid(movingLightAnimation, activateButton);
       }
       else if (cardNumbers.charAt(0) === "3" && cardNumbers.charAt(1) === "4" || cardNumbers.charAt(1) === "7" && cardNumbers.length === 15)
       {
         //this is an american express card;
         document.getElementById("errormessage").innerHTML = "American Express " + "<span class='checkmark'>" + "&#10004;" + "</span>";
-        movingLightAnimation.className = "movingLight";
-        return true;
+        creditcardIsValid(movingLightAnimation, activateButton);
       }
       else
       {
@@ -235,13 +215,11 @@ function defaultCreditcardColor(formBGColor, formInputs, formSelects, cardLogo, 
     fadeIn(document.getElementById('ccardImage'), 500);
   }
 
-  // Go through each <input> and add CSS class to it
   for (var i = 0; i < formInputs.length; i++)
   {
     formInputs[i].className = " defaultCardBGColor" + " inputBorder";
   }
 
-  // Go through each <select> and add CSS class to it
   for (var i = 0; i < formSelects.length; i++)
   {
     formSelects[i].className = " defaultCardBGColor" + " inputBorder";
@@ -260,13 +238,11 @@ function americanExpressCreditcard(formBGColor, formInputs, formSelects, cardLog
     fadeIn(document.getElementById('ccardImage'), 500);
   }
 
-  // Go through each <input> and add CSS class to it
   for (var i = 0; i < formInputs.length; i++)
   {
     formInputs[i].className = " americanExpressColor" + " inputBorder";
   }
 
-  // Go through each <select> and add CSS class to it
   for (var i = 0; i < formSelects.length; i++)
   {
     formSelects[i].className = " americanExpressColor" + " inputBorder";
@@ -285,13 +261,11 @@ function masterCardCreditcard(formBGColor, formInputs, formSelects, cardLogo, mo
     fadeIn(document.getElementById('ccardImage'), 500);
   }
 
-  // Go through each <input> and add CSS class to it
   for (var i = 0; i < formInputs.length; i++)
   {
     formInputs[i].className = " masterCardColor" + " inputBorder";
   }
 
-  // Go through each <select> and add CSS class to it
   for (var i = 0; i < formSelects.length; i++)
   {
     formSelects[i].className = " masterCardColor" + " inputBorder";
@@ -307,20 +281,24 @@ function visaCreditcard(formBGColor, formInputs, formSelects, cardLogo, movingLi
 
   if(cardLogo.indexOf("images/Visa_logo_small.png") == -1)
   {
-    // Change the src of this element and fade it in
     document.getElementById("ccardImage").src="images/Visa_logo_small.png";
     fadeIn(document.getElementById('ccardImage'), 500);
   }
 
-  // Go through each <input> and add CSS class to it
   for (var i = 0; i < formInputs.length; i++)
   {
     formInputs[i].className = "visaCardColor" + " inputBorder";
   }
 
-  // Go through each <select> and add CSS class to it
   for (var i = 0; i < formSelects.length; i++)
   {
     formSelects[i].className = "visaCardColor" + " inputBorder";
   }
+}
+
+function creditcardIsValid(movingLightAnimation, activateButton)
+{
+  movingLightAnimation.className = "movingLight";
+  activateButton.className = " activateButton";
+  return true;
 }

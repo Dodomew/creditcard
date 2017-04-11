@@ -10,6 +10,8 @@ html, body
   padding: 0;
 	color: rgb(240,240,240);
   font-family: monospace;
+  background-color: #c0b6d0;
+  overflow-x: hidden;
 }
 
 h1
@@ -27,14 +29,8 @@ h5
   margin: auto;
   width: 100%;
   height: auto;
+  margin-top: 5rem;
 
-}
-
-.page-header
-{
-  width: 60%;
-  margin: auto;
-	color: rgb(20,20,20);
 }
 
 form
@@ -51,6 +47,9 @@ form
 	align-items: center;
 	margin-bottom: 1rem;
 	background-color: $color-ccard-default;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(135,135,135,1);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(135,135,135,1);
+  box-shadow: 0px 0px 15px 0px rgba(135,135,135,1);
 }
 
 form input, select
@@ -200,10 +199,31 @@ select:focus
 	margin: auto;
 }
 
-.submitButton
+#submitButton
 {
 	display: block;
 	margin: auto;
+  font-size: 2rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.defaultSubmit
+{
+  color: $color-typography-whitesmoke;
+  border: 0.5rem solid $color-typography-whitesmoke;
+  background-color: rgba(0,0,0,0);
+  transition: all 0.3s linear;
+}
+
+.activateButton
+{
+  color: green;
+  border: 0.5rem solid green;
+  background-color: rgba(0, 150, 0, 0.5);
+  transition: all 0.3s linear;
 }
 
 .checkmark
@@ -260,11 +280,16 @@ input::-webkit-inner-spin-button
 
 @include responsiveLayoutMobile()
 {
+  .container
+  {
+    margin-top: 2.5rem;
+  }
+
   form
   {
     width: 90%;
     padding: 1rem;
-    height: auto;
+    min-height: 90%;
     text-align: center;
   }
 
@@ -277,6 +302,7 @@ input::-webkit-inner-spin-button
   {
   	flex: 1 100%;
     font-size: 3rem;
+    order: 2;
   }
 
   .checkmark
@@ -287,6 +313,7 @@ input::-webkit-inner-spin-button
   #ccardLogo
   {
     flex: 0 0 100%;
+    order: 1;
   }
 
   #ccardImage
@@ -295,18 +322,26 @@ input::-webkit-inner-spin-button
     margin: auto;
   }
 
+  .creditcardNumber
+  {
+    order: 3;
+  }
+
   .expDateContainer
   {
     flex: 1 0 100%;
+    order: 5;
   }
 
   .nameHolder
   {
     flex: 1 0 100%;
+    order: 4;
   }
 
   .cvvNumber
   {
   	flex: 1 0 100%;
+    order: 6;
   }
 }

@@ -5,7 +5,7 @@
 	<head>
 
         <meta charset="utf-8">
-        <title>Creditcard</title>
+        <title>Creditcard Validation</title>
         <meta name="description" content="Creditcards">
         <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0" /> <!--user-scalable=no -->
         <link rel="stylesheet" href="css/style.css" media="all">
@@ -21,86 +21,79 @@
     </head>
 
     <body>
+			<a href="https://github.com/Dodomew/creditcard"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
       <div class="container">
 
-        <header class='page-header'>
-
-          <h1>Order now</h1>
-
-        </header>
-
-          <form id="creditcardInputForm" class=""> <!-- Hier begint de form  onsubmit="return readForm() -->
+          <form id="creditcardInputForm" class="">
 
 						<div id="movingLightContainer" class=""></div>
+						<div class="errormessage" id="errormessage"></div>
 
-							<div class="errormessage" id="errormessage"></div>
-							<div class="checkmark" id="card-checkmark"></div>
+						<picture id="ccardLogo">
 
-							<picture id="ccardLogo">
+							<img id="ccardImage" src="images/creditcard_icon_small.png" alt="Creditcard Logo">
 
-								<img id="ccardImage" src="images/creditcard_icon_small.png" alt="Creditcard Logo">
+						</picture>
 
-							</picture>
+            <div class='creditcardNumber'>
 
-	            <div class='creditcardNumber'>
-
-	              <input type="tel" id='card' class="" placeholder="1234-5678-8901-2345" pattern="[0-9]{13,16}" min="0" title="Your creditcard number." onkeyup="return readForm()"  required/>
-								<!-- pattern="[0-9]{13,16}" oninput="addDashesIntoString(this);" -->
-
-	            </div>
-
-							<div class="expDateContainer">
-
-								<select class="" id="expDateMonth">
-
-									<option value="01">01</option>
-									<option value="02">02</option>
-									<option value="03">03</option>
-									<option value="04">04</option>
-									<option value="05">05</option>
-									<option value="06">06</option>
-									<option value="07">07</option>
-									<option value="08">08</option>
-									<option value="09">09</option>
-									<option value="10">10</option>
-									<option value="11">11</option>
-									<option value="12">12</option>
-
-								</select>
-
-						<select class="" id="expDateYear">
-
-							<option value="16"> 2016</option>
-							<option value="17"> 2017</option>
-							<option value="18"> 2018</option>
-							<option value="19"> 2019</option>
-							<option value="20"> 2020</option>
-							<option value="21"> 2021</option>
-
-						</select>
-
-						</div>
-
-            <div class="nameHolder">
-
-              <input type="text" id='nameHolder' class=""  placeholder="The card holder's name." pattern="[a-zA-Z]*" title="The card holder's name." required>
+              <input type="tel" id='card' class="" placeholder="1234-5678-8901-2345" pattern="[0-9]{13,16}" min="0" title="Your creditcard number." onkeyup="return readForm()"  required/>
+							<!-- pattern="[0-9]{13,16}" oninput="addDashesIntoString(this);" -->
 
             </div>
 
-            <div class="cvvNumber">
+						<div class="expDateContainer">
 
-              <input type='number' id='cvvNumber' class=""  placeholder="cvv" pattern="[0-9]{0,5}" title="The security code on the back of the creditcard." min="0" required>
+							<select class="" id="expDateMonth">
 
-            </div>
+								<option value="01">01</option>
+								<option value="02">02</option>
+								<option value="03">03</option>
+								<option value="04">04</option>
+								<option value="05">05</option>
+								<option value="06">06</option>
+								<option value="07">07</option>
+								<option value="08">08</option>
+								<option value="09">09</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
 
-        </form> <!-- Hier eindigt de form -->
+							</select>
+
+					<select class="" id="expDateYear">
+
+						<option value="16"> 2016</option>
+						<option value="17"> 2017</option>
+						<option value="18"> 2018</option>
+						<option value="19"> 2019</option>
+						<option value="20"> 2020</option>
+						<option value="21"> 2021</option>
+
+					</select>
+
+					</div>
+
+          <div class="nameHolder">
+
+            <input type="text" id='nameHolder' class=""  placeholder="The card holder's name." pattern="[a-zA-Z]*" title="The card holder's name." required>
+
+          </div>
+
+          <div class="cvvNumber">
+
+            <input type='number' id='cvvNumber' class=""  placeholder="cvv" pattern="[0-9]{0,5}" title="The security code on the back of the creditcard." min="0" required>
+
+          </div>
+
+        </form>
 
       </div>
 
 			<section class="submitContainer">
 
-				<button class='submitButton'>Submit</button>
+				<button class="defaultSubmit" value="Submit" id='submitButton'>Submit</button>
 
 			</section>
 
