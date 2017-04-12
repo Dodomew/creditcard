@@ -1,25 +1,3 @@
-/*
-
-  Implement validation for the credit card number to catch our users mistakes, and provide them helpful feedback.
-
-  It should tell me the credit card type (Mastercard / Visa / American Express) as soon as it knows it.
-  It should show a green check mark as soon as the valid.
-  If the card type isn't known, show a question mark.
-
-  Visa cards start with 4.
-  Mastercard cards start with 5.
-  American Express cards start with 3. The 2nd digit is either 4 or 7.
-
-  Visa cards are valid if they have 13 to 16 digits.
-  Mastercard cards are valid if it has 16 digits.
-  American Express cards are valid if it has 15 digits.
-
-  There's a published algorithm used to check the validity of credit card numbers. Find out what it is and implement it.
-
-  Also, show an ✕ Invalid message for credit card numbers that match the correct length of digits, but fails validation.
-
-*/
-
 function readForm()
 {
   var cardNumbersOriginal = document.getElementById("card").value;
@@ -27,7 +5,7 @@ function readForm()
   var totalNumberAtPosition = 0;
   var totalMultipliedNumber = 0;
   var totalSumOfBaseRemaining = 0;
-  
+
   // For styling the creditcard visually
   var formBGColor = document.getElementById("creditcardInputForm");
   var formInputs = document.getElementsByTagName("input");
